@@ -1,6 +1,6 @@
-# I have seeded this .gitignore with the Fortran and Python gitigore templates.
+# I have seeded this .gitignore with the Python gitignore template.
 
-### General emacs thing:
+### General emacs item:
 *~
 
 ### Python-specific:
