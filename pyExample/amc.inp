@@ -1,0 +1,10 @@
+source=transphere.mdl
+outfile=populations.pop
+molfile=e-ch3oh.dat
+snr=20
+nphot=100
+kappa=jena,thin,e6
+seed=1971
+go
+q
+ 

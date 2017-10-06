@@ -1,0 +1,8 @@
+FITS (Flexible Image Transport System) format is defined in 'Astronomy
+and Astrophysics', volume 376, page 359; bibcode: 2001A&A...376..359H
+FITS: Miriad fits: CVS Revision 1.19, 2011/06/10 11:42:42 UTC
+FITS: Executed on: 2012-01-05T09:51:25.0
+FITS: Command line inputs follow:
+FITS:   op=xyin
+FITS:   in=ratranResult_2.300E+11.fits
+FITS:   out=cont.miriad

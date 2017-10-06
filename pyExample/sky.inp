@@ -1,0 +1,10 @@
+source=pop2.pop
+format=fits
+outfile=ratranResult
+trans=380
+pix=1001,0.1,32,2
+chan=50,0.1
+distance=130.0
+units=jypx
+go
+q

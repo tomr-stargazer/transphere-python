@@ -1,0 +1,6 @@
+1               Format number of this file
+1               Nr of dust species
+============================================================================
+-1              Way in which this dust species is read (-1=file)
+1               Extension of name of dustopac_***.inp file
+----------------------------------------------------------------------------
