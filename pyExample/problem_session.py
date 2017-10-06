@@ -6,11 +6,12 @@ import plotTransphere
 import astroProcs
 import math
 import os
+import sys
 from matplotlib import pyplot as plt
 
 ### Parameters of physical model
 
-lstar    = 0.05              # Stellar luminosity in units of solar luminosities
+lstar    = 3              # Stellar luminosity in units of solar luminosities
 tstar    = 1000.             # Stellar temperature
 rstar    = lstar**0.5*(tstar/5785.0)**(-2.0)*nc.RS
 rin      = 1.0 * nc.AU       # Inner radius of shell
@@ -18,9 +19,9 @@ rout     = 1.0e4 * nc.AU     # Outer radius of shell
 r0       = 10.0 * nc.AU      # Reference radius
 #rho0     = 9.0e-16          # Density at reference radius (gas mass). Can be used instead of Menv (need to change code further down)
 menv     = 0.5               # Envelope mass in M_sun
-plrho    = -1.8              # Powerlaw for rho
+plrho    = -1.5              # Powerlaw for rho
 isrf     = 0.0               # Scaling of ISRF
-dist     = 200.0             # Distance in pc
+dist     = 235.0             # Distance in pc
 tbg      = -1                # Spectral shape of ISRF (Blackbody equivalent temperature). With -1 the spectrum is read from the file isrf.inp and scaled by ISRF.
 
 ### Parameters related to control of code
@@ -60,6 +61,10 @@ a=tP.readConvhist()
 
 # Plot SED
 
+from readSed import *
+
+sed = readSed('sed.dat')
+
 plt.figure(1)
 plotTransphere.plotSpectrum(s,dpc=dist,jy=1,pstyle='b-')
 plt.xscale('log')
@@ -68,6 +73,9 @@ plt.xlim((1,3.0e3))
 plt.ylim((1.0e-9,1.0e3))
 z={"freq": o['freq'], "spectrum": math.pi*astroProcs.bplanck(o['freq'],tstar)*rstar**2/nc.pc**2}
 plotTransphere.plotSpectrum(z,dpc=dist,jy=1,pstyle='g--')
+
+plt.plot(sed['wave'], sed['flux'], 'r*')
+
 
 # Plot temperature
 

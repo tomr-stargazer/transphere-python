@@ -10,7 +10,7 @@ def readopac(nr=-1):
 
     if nr == -1: nr=1
     filename = 'dustopac_'+str(nr)+'.inp'
-    print "Reading "+filename
+    print ("Reading "+filename)
     f=open(filename,'r')
     nf,ns = f.readline().strip().split()
     nf,ns=int(nf),int(ns)
@@ -19,7 +19,7 @@ def readopac(nr=-1):
         cabs = np.zeros((nf,ns),float)
         csca = np.zeros((nf,ns),float)
         dum  = 0.e0
-        print ns
+        print (ns)
         for kk in range(0,nf):
             for iss in range(0,ns):
                 dum=float(f.readline().strip())
@@ -65,11 +65,11 @@ def readopac(nr=-1):
 
 #dd=findfile(file,count=count)
 #if(count le 0) then begin
-#    print,"Could not find frequency.inp. Taking frequency.dat"
+#    print,("Could not find frequency.inp. Taking frequency.dat")
 #    file='frequency.dat'
 #    dd=findfile(file,count=count)
 #    if(count le 0) then begin
-#       print,"Could not find frequency.dat either"
+#       print,("Could not find frequency.dat either")
 #       stop
 #    endif
 #endif
@@ -365,7 +365,7 @@ def readSpectrum(ext=0,file=0):
     # Read possible dust information
     #
     if os.path.isfile('dustopac.inp'):
-        print "Found dustopac.inp, so assuming dust spectrum"
+        print ("Found dustopac.inp, so assuming dust spectrum")
         fr_units = -1
 
     #
