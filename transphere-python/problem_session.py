@@ -54,16 +54,16 @@ rho    = 1e-2*rho0 * (r/r0)**(plrho)
 model={"rstar": rstar, "mstar": 1.0, "tstar": tstar, "r": r, "rho": rho, "isrf": isrf, "tbg": tbg, "freq": o['freq'], "nriter": nriter, "convcrit": convcrit, "ncst": ncst, "ncex": ncex, "ncnr": ncnr, "itypemw": itypemw, "idump": idump} 
 tP.writeTransphereInput(model)
 
-os.system('../src/transphere')
+os.system('transphere') # Change this to a popen call or something
 
 s=tP.readSpectrum()
 a=tP.readConvhist()
 
 # Plot SED
 
-from readSed import *
+import readSed
 
-sed = readSed('sed.dat')
+sed = readSed.readSed('sed.dat')
 
 plt.figure(1)
 plotTransphere.plotSpectrum(s,dpc=dist,jy=1,pstyle='b-')
