@@ -1,0 +1,11 @@
+# Ignore the outputs of the transphere code.
+
+convhist.dat
+convhist.info
+envstruct.dat
+envstruct.inp
+external_meanint.inp
+spectrum.dat
+starinfo.inp
+starspectrum.inp
+transphere.dat
