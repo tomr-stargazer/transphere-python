@@ -7,6 +7,7 @@ import astroProcs
 import math
 import os
 import sys
+import numpy as np
 from matplotlib import pyplot as plt
 
 ### Parameters of physical model
@@ -98,7 +99,7 @@ rhox=10**rhof(np.log10(rx[1:]))
 rhox=np.insert(rhox,0,rho)
 tempx=10**tempf(np.log10(rx[1:]))
 tempx=np.insert(tempx,0,a['temp'][-1,0])
-abund=zeros(len(rx))
+abund=np.zeros(len(rx))
 abund[(tempx > 90.0).nonzero()]=1.0e-7
 abund[(tempx < 90.0).nonzero()]=1.0e-9
 
