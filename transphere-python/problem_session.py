@@ -15,7 +15,7 @@ import plotTransphere
 
 ### Parameters of physical model
 
-lstar    = 3              # Stellar luminosity in units of solar luminosities
+lstar    = 3                 # Stellar luminosity in units of solar luminosities
 tstar    = 1000.             # Stellar temperature
 rstar    = lstar**0.5*(tstar/5785.0)**(-2.0)*nc.RS
 rin      = 1.0 * nc.AU       # Inner radius of shell
@@ -32,7 +32,7 @@ tbg      = -1                # Spectral shape of ISRF (Blackbody equivalent temp
 
 nr       = 200               # Nr of radial shells for grid
 nref     = 100               # Nr of refinement points
-rref     = 10. * nc.AU      # Refinement radius
+rref     = 10. * nc.AU       # Refinement radius
 nriter   = 30                # Maximum nr of iterations
 convcrit = 0.00001           # Convergence criterion
 ncst     = 10                # Nr of rays for star
@@ -104,10 +104,10 @@ rx = tP.makeRadialGrid(0, rin, rout, 0, 60.0)
 rhof = scipy.interpolate.interp1d(np.log10(r), np.log10(rho))
 tempf = scipy.interpolate.interp1d(np.log10(r), np.log10(a['temp'][-1, :]))
 
-rhox = 10**rhof(np.log10(rx[1:]))
-rhox = np.insert(rhox, 0, rho[0])
-tempx = 10**tempf(np.log10(rx[1:]))
-tempx = np.insert(tempx, 0, a['temp'][-1, 0])
+rhox_short = 10**rhof(np.log10(rx[1:]))
+rhox = np.insert(rhox_short, 0, rho[0])
+tempx_short = 10**tempf(np.log10(rx[1:]))
+tempx = np.insert(tempx_short, 0, a['temp'][-1, 0])
 abund = np.zeros(len(rx))
 abund[(tempx > 90.0).nonzero()] = 1.0e-7
 abund[(tempx < 90.0).nonzero()] = 1.0e-9
