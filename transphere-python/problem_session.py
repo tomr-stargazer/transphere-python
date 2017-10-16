@@ -1,14 +1,17 @@
-import natconst as nc
-import transphereProcs as tP
-from scipy.integrate import trapz as integrate
-import scipy.interpolate
-import plotTransphere
-import astroProcs
-import math
 import os
 import sys
+import math
+import pdb
+
 import numpy as np
 from matplotlib import pyplot as plt
+from scipy.integrate import trapz as integrate
+import scipy.interpolate
+
+import astroProcs
+import natconst as nc
+import transphereProcs as tP
+import plotTransphere
 
 ### Parameters of physical model
 
