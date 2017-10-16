@@ -96,13 +96,12 @@ rhof=scipy.interpolate.interp1d(np.log10(r),np.log10(rho))
 tempf=scipy.interpolate.interp1d(np.log10(r),np.log10(a['temp'][-1,:]))
 
 rhox=10**rhof(np.log10(rx[1:]))
-rhox=np.insert(rhox,0,rho)
+rhox=np.insert(rhox,0,rho[0])
 tempx=10**tempf(np.log10(rx[1:]))
 tempx=np.insert(tempx,0,a['temp'][-1,0])
 abund=np.zeros(len(rx))
 abund[(tempx > 90.0).nonzero()]=1.0e-7
 abund[(tempx < 90.0).nonzero()]=1.0e-9
-
 
 transphereRatran.ratranRun(r=rx, rho=rhox,temp=tempx,db=0.5,abund=abund,dpc=dist,trans='380',pixel=0.1,molfile='e-ch3oh.dat',writeonly=0,skyonly=0,unit='jypx')
 
