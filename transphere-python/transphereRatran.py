@@ -11,7 +11,7 @@ def ratranRun(r=0.0, rho=0.0,temp=0.0,db=0.0,abund=0.0,vr=0.0,tdust=0.0,dustonly
     # Dust density * gas2dust 
     nh=rho*100.0/nc.muh2/nc.mp 
 
-    print 'Writing model in '+file
+    print( 'Writing model in '+file)
 
     r1=np.insert(r[0:-1],0,0)
     r2=np.array(r)
@@ -64,7 +64,7 @@ def ratranRun(r=0.0, rho=0.0,temp=0.0,db=0.0,abund=0.0,vr=0.0,tdust=0.0,dustonly
             f.write("go\n")
             f.write("q\n")
             f.write(" \n")
-            print "Starting AMC calculation..."
+            print( "Starting AMC calculation...")
             f.close()
             os.system('amc amc.inp')
 
@@ -90,6 +90,6 @@ def ratranRun(r=0.0, rho=0.0,temp=0.0,db=0.0,abund=0.0,vr=0.0,tdust=0.0,dustonly
         f.write("q\n")
         f.close()
         
-        print "Starting SKY calculation..."
+        print( "Starting SKY calculation...")
         os.system("sky sky.inp")
         
