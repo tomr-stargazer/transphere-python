@@ -1,10 +1,71 @@
-def ratranRun(r=0.0, rho=0.0, temp=0.0, db=0.0, abund=0.0, vr=0.0, tdust=0.0, dustonly=0, file='transphere.mdl', dpc=0.0, imsize=129, pixel=0.5, trans='220.0e9', writeonly=0, skyonly=1, molfile='', outputfile="ratranResult", unit='yada'):
-    import natconst as nc
-    import numpy as np
-    import scipy.interpolate
-    import sys
-    import os
+import os
+import sys
+import numpy as np
+import scipy.interpolate
 
+import natconst as nc
+
+
+def ratranRun(r=0.0, rho=0.0, temp=0.0, db=0.0, abund=0.0, vr=0.0, tdust=0.0, dustonly=0, 
+              file='transphere.mdl', dpc=0.0, imsize=129, pixel=0.5, trans='220.0e9', writeonly=0, 
+              skyonly=1, molfile='', outputfile="ratranResult", unit='yada'):
+    """
+
+    Parameters
+    ----------
+    r : array of floats
+        Radii (in cm) for computation
+    rho : array of floats
+        Mass density (in g cm-3) at each radius
+    temp : array of floats
+        Temperature (in K) at each radius
+    db : float
+        Doppler b-parameter linewidth (km s-1). Specifically, the 1/e half-width of the 
+        line profile.
+    abund : float or array of floats
+        Number abundance (molecules per H2 molecule) of species in question
+    vr : float
+        Radial velocity (km s-1)
+    tdust : float
+        Dust temperature (K)
+    dustonly : float (0 or nonzero)
+        Flag to set dust temperature `tdust` at `temp` if `dustonly` equals 0.0.
+    file : str
+        Name of input transphere model `.mdl` file.
+    dpc : float 
+        Distance (pc) to simulated source
+    imsize : int
+        Number of pixels in the image. Always square.
+    pixel : float
+        Scale in arcseconds of each pixel.
+    trans : str
+        Transition numbers. See online documentation for further explanation.
+        If the input file has level populations defined, trans contains the transition numbers
+        to be calculated. These are the numbers at the start of lines (10+NLEV) to (10+NLEV+NLIN) 
+        in the molecular data file. For linear molecules with singlet sigma ground states without 
+        hyperfine structure such as CO, CS and HCO+, trans is equal to Jup. 
+        If there are no populations defined in the input model, then a pure continuum calculation 
+        is done, and 'trans' contains the frequencies (in Hz).
+    writeonly : int (1 or not 1)
+        Flag: whether to output .inp files, etc. If not 1, then it won't.
+    skyonly : int (0 or nonzero)
+        Flag: whether to run AMC. If not 0, then AMC won't run.
+    molfile : str
+        Name of the molecular data file (usually '`molname`.dat').
+        Often from the LAMDA Leiden database.
+        Sometimes an '@' symbol (e.g. as in 'h13cn@xpol.dat') will crash Sky. 
+        Rename the .dat file in such cases.
+    outputfile : str
+        Prefix of the output file of the ratran code.
+    unit : str, 'K' or 'Jypx' or 'Wm2Hzsr'
+        Units of the output image.
+
+    Information
+    -----------
+    See this page: https://personal.sron.nl/~vdtak/ratran/running.html#amc-model
+    for more information on the model parameters.
+
+    """
     if tdust == 0.0:
         tdust = temp
 
