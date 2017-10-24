@@ -1,3 +1,14 @@
+"""
+This is a script which does the following:
+
+- Imports some python modules, including local ones that wrap the `transphere` and `ratran` executables
+- Defines physical and code-control constants for the modeling
+- Calls `transphere` 
+- Plots the output of `transphere`
+- Optionally
+
+"""
+
 import os
 import sys
 import math
@@ -112,13 +123,15 @@ abund = np.zeros(len(rx))
 abund[(tempx > 90.0).nonzero()] = 1.0e-7
 abund[(tempx < 90.0).nonzero()] = 1.0e-9
 
+pdb.set_trace()
+
 transphereRatran.ratranRun(r=rx, rho=rhox, temp=tempx, db=0.5, abund=abund, dpc=dist,
-                           trans='380', pixel=0.1, molfile='e-ch3oh.dat', writeonly=0, skyonly=0, 
+                           trans='3', pixel=0.1, molfile='hco+.dat', writeonly=0, skyonly=0, 
                            unit='jypx')
 
 os.system('rm -rf image.sky image.conv image.mom')
-os.system('fits in=ratranResult_380.fits out=image.sky op=xyin')
-os.system('puthd in=image.sky/restfreq value=338.406')
+os.system('fits in=ratranResult_003.fits out=image.sky op=xyin')
+os.system('puthd in=image.sky/restfreq value=257.558')
 os.system('restor model=image.sky fwhm=0.46 mode=convol out=image.conv')
 os.system('fits in=image.conv out=conimage.fits op=xyout')
 os.system('moment in=image.conv out=image.mom')
