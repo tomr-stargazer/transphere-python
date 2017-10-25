@@ -3,12 +3,13 @@ import sys
 import numpy as np
 import scipy.interpolate
 
-import natconst as nc
+import transphere_python.natconst as nc
 
 
 def ratranRun(r=0.0, rho=0.0, temp=0.0, db=0.0, abund=0.0, vr=0.0, tdust=0.0, dustonly=0, 
-              file='transphere.mdl', dpc=0.0, imsize=129, pixel=0.5, trans='220.0e9', writeonly=0, 
-              skyonly=1, molfile='', outputfile="ratranResult", unit='yada'):
+              file='transphere.mdl', dpc=0.0, imsize=129, pixel=0.5, channels=50, 
+              channel_width=0.1, trans='220.0e9', writeonly=0, skyonly=1, molfile='', 
+              outputfile="ratranResult", unit='yada'):
     """
 
     Parameters
@@ -143,7 +144,7 @@ def ratranRun(r=0.0, rho=0.0, temp=0.0, db=0.0, abund=0.0, vr=0.0, tdust=0.0, du
         f.write("trans="+trans+"\n")
         f.write("pix="+str(imsize)+","+str(pixel)+",32,2\n")
         if skyonly == 0:
-            f.write("chan=50,0.1\n")
+            f.write("chan="+str(channels)+","+str(channel_width)+"\n")
         else:
             f.write("chan=1,1.0\n")
         f.write("distance="+str(dpc)+"\n")
