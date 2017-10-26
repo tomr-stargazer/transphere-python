@@ -4,6 +4,8 @@
 #  --- Jes Jorgensen (jeskj@nbi); Dec 2011
 #
 
+import transphere_python.natconst as nc
+
 
 def readopac(nr=-1):
     import numpy as np
@@ -159,7 +161,6 @@ def writeopac(opacity, localdust, nr):
 
 
 def findKappa(localdust, opacity):
-    import natconst as nc
     import numpy as np
     if localdust == 1:
         f = open('dustopac_0.inp', 'r')
