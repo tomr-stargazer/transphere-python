@@ -1,8 +1,9 @@
+import transphere_python.natconst as nc
+
 def plotSpectrum(a, dpc=0, jy=0, pstyle='', xlog=1, ylog=1):
     from matplotlib import rc
     rc('text', usetex=True)
     rc('font', family='serif')
-    import natconst as nc
     import sys
     from matplotlib import pyplot as plt
     xcoord = 1.0e4*nc.cc / a['freq']
@@ -37,7 +38,6 @@ def plotTemperature(a, model=-1, pstyle='', xlog=1, ylog=1):
     import numpy as np
     rc('text', usetex=True)
     rc('font', family='serif')
-    import natconst as nc
     from matplotlib import pyplot as plt
 
     plt.plot(a['r']/nc.AU, a['temp'][model, :], pstyle)

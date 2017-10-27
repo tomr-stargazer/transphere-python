@@ -1,5 +1,6 @@
+import transphere_python.natconst as nc
+
 def bplanck(nu, T):
-    import natconst as nc
     import numpy as np
     import math
     n = len(nu)

@@ -5,7 +5,7 @@
 #
 
 import transphere_python.natconst as nc
-
+from transphere_python import astroProcs
 
 def readopac(nr=-1):
     import numpy as np
@@ -246,9 +246,7 @@ def makeRadialGrid(nref, rin, rout, rref, nr):
 
 
 def writeTransphereInput(model):
-    import natconst as nc
     import math
-    import astroProcs
     import numpy as np
 # Transphere input file
     f = open('transphere.inp', 'w')
