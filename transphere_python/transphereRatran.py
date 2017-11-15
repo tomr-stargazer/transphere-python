@@ -1,4 +1,5 @@
 import os
+import numbers
 import sys
 import numpy as np
 import scipy.interpolate
@@ -20,12 +21,12 @@ def ratranRun(r=0.0, rho=0.0, temp=0.0, db=0.0, abund=0.0, vr=0.0, tdust=0.0, du
         Mass density (in g cm-3) at each radius
     temp : array of floats
         Temperature (in K) at each radius
-    db : float
+    db : array of floats or float
         Doppler b-parameter linewidth (km s-1). Specifically, the 1/e half-width of the 
         line profile.
     abund : float or array of floats
         Number abundance (molecules per H2 molecule) of species in question
-    vr : float
+    vr : array of floats or float
         Radial velocity (km s-1)
     tdust : float
         Dust temperature (K)
@@ -94,6 +95,16 @@ def ratranRun(r=0.0, rho=0.0, temp=0.0, db=0.0, abund=0.0, vr=0.0, tdust=0.0, du
 
     nhint[0] = 0.0
 
+    if isinstance(db, numbers.Number):
+        db_arr = np.ones_like(rr) * db
+    else:
+        db_arr = db
+
+    if isinstance(vr, numbers.Number):
+        vr_arr = np.ones_like(rr) * vr
+    else:
+        vr_arr = vr
+
     # Check consistency with input grid here!!!
 
     f = open(file, 'w')
@@ -111,7 +122,7 @@ def ratranRun(r=0.0, rho=0.0, temp=0.0, db=0.0, abund=0.0, vr=0.0, tdust=0.0, du
     for ii in range(0, len(r1)):
         # remember ra/r1 and rb/r2 should be in  m (NOT cm)
         f.write("%4i %12.5E %12.5E %12.5E %12.5E %12.5E %12.5E %12.5E %12.5E" % (
-            ii+1, r1[ii]/100.0, r2[ii]/100.0, nhint[ii], nhint[ii]*abint[ii], tkint[ii], tdint[ii], db, vr)+'\n')
+            ii+1, r1[ii]/100.0, r2[ii]/100.0, nhint[ii], nhint[ii]*abint[ii], tkint[ii], tdint[ii], db_arr[ii], vr_arr[ii])+'\n')
     f.close()
 
     if writeonly != 1:
