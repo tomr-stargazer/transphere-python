@@ -26,14 +26,14 @@ import plotTransphere
 
 ### Parameters of physical model
 
-lstar    = 3                 # Stellar luminosity in units of solar luminosities
+lstar    = 2                 # Stellar luminosity in units of solar luminosities
 tstar    = 1000.             # Stellar temperature
 rstar    = lstar**0.5*(tstar/5785.0)**(-2.0)*nc.RS
 rin      = 1.0 * nc.AU       # Inner radius of shell
 rout     = 1.0e4 * nc.AU     # Outer radius of shell
 r0       = 10.0 * nc.AU      # Reference radius
 #rho0     = 9.0e-16          # Density at reference radius (gas mass). Can be used instead of Menv (need to change code further down)
-menv     = 0.5               # Envelope mass in M_sun
+menv     = 2               # Envelope mass in M_sun
 plrho    = -1.5              # Powerlaw for rho
 isrf     = 0.0               # Scaling of ISRF
 dist     = 235.0             # Distance in pc
